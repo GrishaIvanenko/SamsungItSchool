@@ -18,20 +18,14 @@ public interface TaskDao {
     @Delete
     void Delete(Task roomTask);
 
-    @Query("DELETE FROM Task")
-    void deleteAll();
+    @Query("DELETE FROM Task WHERE id = :id")
+    void deleteTashWithId(int id);
 
     @Query("SELECT * FROM Task")
     ArrayList<Task> getAllTask();
 
     @Query("Select * FROM Task WHERE id = :id")
-    ArrayList<Task> getTaskWithid(int id);
-
-    @Query("Select * FROM Task WHERE Description = :Description")
-    ArrayList<Task> getTaskWithDescription(String Description);
-
-    @Query("Select * FROM Task WHERE Time = :Time")
-    ArrayList<Task> getTaskWithTime(int Time);
+    ArrayList<Task> getTaskWithId(int id);
 
     @Query("Select * FROM Task WHERE Priority = :Priority")
     ArrayList<Task> getTaskWithPriority(int Priority);
