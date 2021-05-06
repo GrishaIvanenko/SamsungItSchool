@@ -28,7 +28,7 @@ public class AsyncAllWithPriority extends AsyncTask<Integer, Void, ArrayList<Tas
 
         Log.wtf(tag, "setup finished!");
 
-        ArrayList<Task> ans = dao.getTaskWithPriority(integers[0]);
+        ArrayList<Task> ans =  (ArrayList<Task>)dao.getTaskWithPriority(integers[0]);
 
         Log.wtf(tag,
                 "finished with ans.size() = " + String.valueOf(ans.size()));

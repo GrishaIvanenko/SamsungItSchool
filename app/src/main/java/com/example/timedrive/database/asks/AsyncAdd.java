@@ -29,7 +29,7 @@ public class AsyncAdd extends AsyncTask<Task, Void, Void> {
         Log.wtf(tag,
                 "info: " +
                 roomTasks[0].getDescription() + " "
-                +String.valueOf(roomTasks[0].getId()) + " "
+                +String.valueOf(roomTasks[0].getidId()) + " "
                 + String.valueOf(roomTasks[0].getPriority()) + " "
                 + String.valueOf(roomTasks[0].getTime()));
 

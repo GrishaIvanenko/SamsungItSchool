@@ -28,7 +28,7 @@ public class AsyncAll extends AsyncTask<Void, Void, ArrayList<Task>> {
 
         Log.wtf(tag, "setup finished!");
 
-        ArrayList<Task> ans = dao.getAllTask();
+        ArrayList<Task> ans = (ArrayList<Task>)dao.getAllTask();
 
         Log.wtf(tag,
                 "finished with ans.size() = " + String.valueOf(ans.size()));

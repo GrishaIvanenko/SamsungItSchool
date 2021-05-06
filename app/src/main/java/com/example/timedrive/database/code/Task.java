@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Task")
 public class Task {
+
     @PrimaryKey(autoGenerate =  true)
     int id;
     @ColumnInfo(name = "Description")
@@ -14,16 +15,17 @@ public class Task {
     int priority;
     @ColumnInfo(name = "Time")
     int time;
+    @ColumnInfo(name = "Completed")
+    int completed;
 
     public Task(String  description, int priority, int time) {
         this.description = description;
-        this.priority = 0;
-        this.time = -1;
+        this.priority = priority;
+        this.time = time;
+        completed = 0;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getidId() {return id;}
 
     public String getDescription() {
         return description;
@@ -36,5 +38,7 @@ public class Task {
     public int getTime() {
         return time;
     }
+
+    public int getcompletedCompleted() {return completed; }
 
 }

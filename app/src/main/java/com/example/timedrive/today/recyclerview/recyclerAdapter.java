@@ -1,6 +1,5 @@
 package com.example.timedrive.today.recyclerview;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +51,9 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
        holder.textViewDescription.setText(Description);
        Integer prior = taskArrayList.get(position).getPriority();
        Integer nprior = parce_prior(prior);
-       holder.layoutTaskView.setBackgroundColor(nprior);
+
+
+
     }
 
     private Integer parce_prior(Integer prior) {

@@ -6,6 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Dao
 public interface TaskDao {
@@ -22,11 +23,14 @@ public interface TaskDao {
     void deleteTashWithId(int id);
 
     @Query("SELECT * FROM Task")
-    ArrayList<Task> getAllTask();
+    List<Task> getAllTask();
 
     @Query("Select * FROM Task WHERE id = :id")
-    ArrayList<Task> getTaskWithId(int id);
+    List<Task> getTaskWithId(int id);
 
     @Query("Select * FROM Task WHERE Priority = :Priority")
-    ArrayList<Task> getTaskWithPriority(int Priority);
+    List<Task> getTaskWithPriority(int Priority);
+
+    @Query("Select * FROM Task WHERE Completed = :Completed")
+    List<Task> getTaskWIthCompleted(int Completed);
 }
