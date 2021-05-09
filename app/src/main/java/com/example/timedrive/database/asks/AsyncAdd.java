@@ -12,7 +12,7 @@ public class AsyncAdd extends AsyncTask<Task, Void, Void> {
 
     private Context mContext;
 
-    private final String tag = "Trying to Select All with priority from main base";
+    private final String tag = "Trying to Add to main base";
 
     public AsyncAdd (Context context){
         mContext = context;

@@ -2,6 +2,7 @@ package com.example.timedrive.today.maincode;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ import com.example.timedrive.today.recyclerview.recyclerAdapter;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+
 public class TodayFragment extends Fragment {
     private TaskBase db;
     private RecyclerView recyclerView;
@@ -32,21 +35,26 @@ public class TodayFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_today, container, false);
-        AsyncAll getter = new AsyncAll(this.getContext());
-        getter.execute();
-        try {
-            cash = getter.get();
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
+        refill();
         recyclerView = root.findViewById(R.id.recyclerViewInToday);
         setAdapter();
         add = root.findViewById(R.id.plus_post);
         add.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), AddActivity.class);
-            startActivity(intent);
+            intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+            int somethingUseless = 1;
+
+            startActivityForResult(intent, somethingUseless);
+
         });
         return root;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.wtf("DONE", "onActivityResult: ");
+        refill();
+        setAdapter();
     }
 
     private void setAdapter() {
@@ -56,6 +64,16 @@ public class TodayFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+    }
+
+    private void refill() {
+        AsyncAll getter = new AsyncAll(this.getContext());
+        getter.execute();
+        try {
+            cash = getter.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }
 

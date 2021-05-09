@@ -7,7 +7,7 @@ import android.util.Log;
 import com.example.timedrive.database.code.TaskBase;
 import com.example.timedrive.database.code.TaskDao;
 
-public class AsyncDel extends AsyncTask<Integer, Void, Void> {
+public class AsyncDel extends AsyncTask<Void, Void, Void> {
 
     private Context mContext;
 
@@ -18,7 +18,7 @@ public class AsyncDel extends AsyncTask<Integer, Void, Void> {
     }
 
     @Override
-    protected Void doInBackground(Integer... integers) {
+    protected Void doInBackground(Void... voids) {
 
         Log.wtf(tag, "setup");
 
@@ -26,9 +26,9 @@ public class AsyncDel extends AsyncTask<Integer, Void, Void> {
         TaskDao dao = db.RoomTaskDao();
 
         Log.wtf(tag,
-                "info: " + String.valueOf(integers[0]));
+                "info: " + "Deleting All!");
 
-        dao.deleteTashWithId(integers[0]);
+        dao.deleteAll();
 
         Log.wtf(tag, "Done!");
 

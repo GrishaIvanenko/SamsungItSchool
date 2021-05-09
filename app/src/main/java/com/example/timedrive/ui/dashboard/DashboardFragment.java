@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.timedrive.R;
-import com.example.timedrive.database.asks.AsyncAdd;
 import com.example.timedrive.database.asks.AsyncAll;
+import com.example.timedrive.database.asks.AsyncDel;
 import com.example.timedrive.database.code.Task;
 
 import java.util.ArrayList;
@@ -31,8 +31,8 @@ public class DashboardFragment extends Fragment {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-        AsyncAdd gg = new AsyncAdd(getContext());
-        gg.execute(new Task("biba", cash.size() * 10, 2));
+        AsyncDel gg = new AsyncDel(getContext());
+        gg.execute();
         return root;
     }
 }
