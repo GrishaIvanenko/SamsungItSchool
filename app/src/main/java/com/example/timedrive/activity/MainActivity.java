@@ -1,4 +1,4 @@
-package com.example.timedrive;
+package com.example.timedrive.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.timedrive.R;
 import com.example.timedrive.database.code.TaskBase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         TaskBase.getInstance(getApplicationContext());
         settings = findViewById(R.id.settings);
         settings.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AddElementActivity.class);
+            Intent intent = new Intent(this, AddActivity.class);
             startActivity(intent);
         });
     }
