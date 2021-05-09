@@ -1,6 +1,8 @@
 package com.example.timedrive;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -12,6 +14,8 @@ import com.example.timedrive.database.code.TaskBase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ImageButton settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
         TaskBase.getInstance(getApplicationContext());
+        settings = findViewById(R.id.settings);
+        settings.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AddElementActivity.class);
+            startActivity(intent);
+        });
     }
 
 }
