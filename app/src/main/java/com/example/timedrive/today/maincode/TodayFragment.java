@@ -73,6 +73,7 @@ public class TodayFragment extends Fragment {
             cash = getter.get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
+
         }
     }
 }
