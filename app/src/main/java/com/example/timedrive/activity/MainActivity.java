@@ -1,8 +1,8 @@
 package com.example.timedrive.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -32,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
         TaskBase.getInstance(getApplicationContext());
         settings = findViewById(R.id.settings);
         settings.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AddActivity.class);
-            startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Not done", Toast.LENGTH_SHORT).show();
         });
     }
 

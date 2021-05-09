@@ -1,9 +1,11 @@
 package com.example.timedrive.today.maincode;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timedrive.R;
+import com.example.timedrive.activity.AddActivity;
 import com.example.timedrive.database.asks.AsyncAll;
 import com.example.timedrive.database.code.Task;
 import com.example.timedrive.database.code.TaskBase;
@@ -24,6 +27,7 @@ public class TodayFragment extends Fragment {
     private TaskBase db;
     private RecyclerView recyclerView;
     private ArrayList<Task> cash;
+    private ImageButton add;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +41,11 @@ public class TodayFragment extends Fragment {
         }
         recyclerView = root.findViewById(R.id.recyclerViewInToday);
         setAdapter();
+        add = root.findViewById(R.id.plus_post);
+        add.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), AddActivity.class);
+            startActivity(intent);
+        });
         return root;
     }
 
