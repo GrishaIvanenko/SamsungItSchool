@@ -21,16 +21,16 @@ public class AsyncAllDone extends AsyncTask<Boolean, Void, ArrayList<Task>> {
     @Override
     protected ArrayList<Task> doInBackground(Boolean... booleans) {
 
-        Log.wtf(tag, "setup");
+        Log.d(tag, "setup");
 
         TaskBase db = TaskBase.getInstance(mContext);
         TaskDao dao = db.RoomTaskDao();
 
-        Log.wtf(tag, "setup finished!");
+        Log.d(tag, "setup finished!");
 
         ArrayList<Task> ans =  (ArrayList<Task>)dao.getTaskWithDone(booleans[0]);
 
-        Log.wtf(tag, "finished with ans.size() = " + String.valueOf(ans.size()));
+        Log.d(tag, "finished with ans.size() = " + String.valueOf(ans.size()));
 
         return ans;
     }
@@ -38,10 +38,10 @@ public class AsyncAllDone extends AsyncTask<Boolean, Void, ArrayList<Task>> {
     @Override
     protected  void onPostExecute(ArrayList<Task> result) {
 
-        Log.wtf(tag, "Trying to post result of Selecting All from main base");
+        Log.d(tag, "Trying to post result of Selecting All from main base");
 
         super.onPostExecute(result);
 
-        Log.wtf(tag, "Finished with ans.size() = " + String.valueOf(result.size()));
+        Log.d(tag, "Finished with ans.size() = " + String.valueOf(result.size()));
     }
 }

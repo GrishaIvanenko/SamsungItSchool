@@ -52,7 +52,7 @@ public class TodayFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.wtf("DONE", "onActivityResult: ");
+        Log.d("DONE", "onActivityResult: ");
         refill();
         setAdapter();
     }

@@ -57,7 +57,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
     private String parce_time(Integer time) {
         String TAG = "parcing time";
         if (time < 0 | time >= 60 * 24) {
-            Log.wtf(TAG, "parce_time Error: time = " + time.toString() + " BUT time must be [0; 24 * 60 * 60)!!!");
+            Log.d(TAG, "parce_time Error: time = " + time.toString() + " BUT time must be [0; 24 * 60 * 60)!!!");
             assert false;
         }
         Integer hours = time / 60;
@@ -67,7 +67,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
             ans = hours.toString() + ":0" + minutes.toString();
         else
             ans = hours.toString() + ":" + minutes.toString();
-        Log.wtf(TAG, "parce_time: " + ans + "; -OK!");
+        Log.d(TAG, "parce_time: " + ans + "; -OK!");
         return ans;
     }
 

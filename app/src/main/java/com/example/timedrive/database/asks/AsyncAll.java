@@ -21,16 +21,16 @@ public class AsyncAll extends AsyncTask<Void, Void, ArrayList<Task>> {
     @Override
     protected ArrayList<Task> doInBackground(Void... voids) {
 
-        Log.wtf(tag, "setup");
+        Log.d(tag, "setup");
 
         TaskBase db = TaskBase.getInstance(mContext);
         TaskDao dao = db.RoomTaskDao();
 
-        Log.wtf(tag, "setup finished!");
+        Log.d(tag, "setup finished!");
 
         ArrayList<Task> ans = (ArrayList<Task>)dao.getAllTask();
 
-        Log.wtf(tag,
+        Log.d(tag,
                 "finished with ans.size() = " + String.valueOf(ans.size()));
 
         return ans;
@@ -39,12 +39,12 @@ public class AsyncAll extends AsyncTask<Void, Void, ArrayList<Task>> {
     @Override
     protected  void onPostExecute(ArrayList<Task> result) {
 
-        Log.wtf(tag,
+        Log.d(tag,
                 "Trying to post result of Selecting All from main base");
 
         super.onPostExecute(result);
 
-        Log.wtf(tag,
+        Log.d(tag,
                 "Finished with ans.size() = " + String.valueOf(result.size()));
     }
 }

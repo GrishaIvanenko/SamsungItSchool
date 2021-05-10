@@ -21,16 +21,16 @@ public class AsyncAllWithId extends AsyncTask<Integer, Void, ArrayList<Task>> {
     @Override
     protected ArrayList<Task> doInBackground(Integer... integers) {
 
-        Log.wtf(tag, "setup");
+        Log.d(tag, "setup");
 
         TaskBase db = TaskBase.getInstance(mContext);
         TaskDao dao = db.RoomTaskDao();
 
-        Log.wtf(tag, "setup finished!");
+        Log.d(tag, "setup finished!");
 
         ArrayList<Task> ans =  (ArrayList<Task>)dao.getTaskWithId(integers[0]);
 
-        Log.wtf(tag,
+        Log.d(tag,
                 "finished with ans.size() = " + String.valueOf(ans.size()));
 
         return ans;
@@ -39,17 +39,17 @@ public class AsyncAllWithId extends AsyncTask<Integer, Void, ArrayList<Task>> {
     @Override
     protected  void onPostExecute(ArrayList<Task> result) {
 
-        Log.wtf(tag,
+        Log.d(tag,
                 "Trying to post result of Selecting All from main base");
 
         super.onPostExecute(result);
 
         if (result.size() == 1) {
-            Log.wtf(tag, "Finished, found!");
+            Log.d(tag, "Finished, found!");
         } else if (result.size() == 0) {
-            Log.wtf(tag, "Finished,  not found!");
+            Log.d(tag, "Finished,  not found!");
         } else {
-            Log.wtf(tag, "Finished with trouble: " + String.valueOf(result.size())
+            Log.d(tag, "Finished with trouble: " + String.valueOf(result.size())
             + ", but size must be 0 or 1!!!");
             assert (false);
         }

@@ -1,27 +1,29 @@
 package com.example.timedrive.activity;
 
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
 
 import com.example.timedrive.R;
-import com.example.timedrive.database.asks.AsyncAdd;
-import com.example.timedrive.database.code.Task;
-
-import java.util.concurrent.ExecutionException;
 
 public class AddActivity extends AppCompatActivity {
 
-    private EditText editText;
-    private Button button;
+    //private EditText editText;
+    //private Button button;
+    private AppCompatImageButton exiter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
-        editText = findViewById(R.id.editText);
+
+        exiter = findViewById(R.id.exit_add_button);
+        exiter.setOnClickListener(v -> {
+            this.finish();
+        });
+
+        /*editText = findViewById(R.id.editText);
         button = findViewById(R.id.button);
         button.setOnClickListener(v->{
             String desc = editText.getText().toString();
@@ -36,6 +38,6 @@ public class AddActivity extends AppCompatActivity {
 
 
             this.finish();
-        });
+        });*/
     }
 }

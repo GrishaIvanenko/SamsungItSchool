@@ -21,18 +21,18 @@ public class AsyncAdd extends AsyncTask<Task, Void, Void> {
     @Override
     protected Void doInBackground(Task... roomTasks) {
 
-        Log.wtf(tag, "setup");
+        Log.d(tag, "setup");
 
         TaskBase db = TaskBase.getInstance(mContext);
         TaskDao dao = db.RoomTaskDao();
 
-        Log.wtf(tag,
+        Log.d(tag,
                 "info: " +
                 roomTasks[0].infoString());
 
         dao.Insert(roomTasks[0]);
 
-        Log.wtf(tag, "Done!");
+        Log.d(tag, "Done!");
 
         return null;
     }

@@ -20,17 +20,17 @@ public class AsyncDel extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
 
-        Log.wtf(tag, "setup");
+        Log.d(tag, "setup");
 
         TaskBase db = TaskBase.getInstance(mContext);
         TaskDao dao = db.RoomTaskDao();
 
-        Log.wtf(tag,
+        Log.d(tag,
                 "info: " + "Deleting All!");
 
         dao.deleteAll();
 
-        Log.wtf(tag, "Done!");
+        Log.d(tag, "Done!");
 
         return null;
     }

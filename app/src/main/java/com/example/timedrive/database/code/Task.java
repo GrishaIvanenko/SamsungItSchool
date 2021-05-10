@@ -107,11 +107,11 @@ public class Task {
         String TAG = "From String to Task";
         String[] cash = data.split(" $ ");
         if (cash.length != 6) {
-            Log.wtf(TAG, "BAD DATA: data.size() = " +  String.valueOf(cash.length) +
+            Log.d(TAG, "BAD DATA: data.size() = " +  String.valueOf(cash.length) +
                     "instead of ");
             assert false;
         }
-        Log.wtf(TAG, "Start parsing");
+        Log.d(TAG, "Start parsing");
         id = Integer.parseInt(cash[0]);
         title = cash[1];
         description = cash[2];
@@ -119,6 +119,6 @@ public class Task {
         time = Integer.parseInt(cash[4]);
         done = Boolean.parseBoolean(cash[5]);
         myPicture = Integer.parseInt(cash[6]);
-        Log.wtf(TAG, "Parsing finished!");
+        Log.d(TAG, "Parsing finished!");
     }
 }
