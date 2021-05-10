@@ -10,16 +10,16 @@ import com.example.timedrive.database.code.TaskDao;
 
 import java.util.ArrayList;
 
-public class AsyncAllWithPriority extends AsyncTask<Integer, Void, ArrayList<Task>> {
+public class AsyncAllDone extends AsyncTask<Boolean, Void, ArrayList<Task>> {
 
     private Context mContext;
 
     private final String tag = "Trying to Select All with priority from main base";
 
-    public AsyncAllWithPriority (Context context){ mContext = context; }
+    public AsyncAllDone(Context context){ mContext = context; }
 
     @Override
-    protected ArrayList<Task> doInBackground(Integer... integers) {
+    protected ArrayList<Task> doInBackground(Boolean... booleans) {
 
         Log.wtf(tag, "setup");
 
@@ -28,10 +28,9 @@ public class AsyncAllWithPriority extends AsyncTask<Integer, Void, ArrayList<Tas
 
         Log.wtf(tag, "setup finished!");
 
-        ArrayList<Task> ans =  (ArrayList<Task>)dao.getTaskWithPriority(integers[0]);
+        ArrayList<Task> ans =  (ArrayList<Task>)dao.getTaskWithDone(booleans[0]);
 
-        Log.wtf(tag,
-                "finished with ans.size() = " + String.valueOf(ans.size()));
+        Log.wtf(tag, "finished with ans.size() = " + String.valueOf(ans.size()));
 
         return ans;
     }
@@ -39,12 +38,10 @@ public class AsyncAllWithPriority extends AsyncTask<Integer, Void, ArrayList<Tas
     @Override
     protected  void onPostExecute(ArrayList<Task> result) {
 
-        Log.wtf(tag,
-                "Trying to post result of Selecting All from main base");
+        Log.wtf(tag, "Trying to post result of Selecting All from main base");
 
         super.onPostExecute(result);
 
-        Log.wtf(tag,
-                "Finished with ans.size() = " + String.valueOf(result.size()));
+        Log.wtf(tag, "Finished with ans.size() = " + String.valueOf(result.size()));
     }
 }

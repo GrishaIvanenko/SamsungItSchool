@@ -25,7 +25,7 @@ public class AddActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
         button.setOnClickListener(v->{
             String desc = editText.getText().toString();
-            Task task = new Task(desc, 0, 228);
+            Task task = new Task(desc, "fool", 1, 2, true, 3);
             AsyncAdd adder = new AsyncAdd(getApplicationContext());
             adder.execute(task);
             try {

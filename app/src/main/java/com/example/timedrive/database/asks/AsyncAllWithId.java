@@ -51,6 +51,7 @@ public class AsyncAllWithId extends AsyncTask<Integer, Void, ArrayList<Task>> {
         } else {
             Log.wtf(tag, "Finished with trouble: " + String.valueOf(result.size())
             + ", but size must be 0 or 1!!!");
+            assert (false);
         }
 
     }

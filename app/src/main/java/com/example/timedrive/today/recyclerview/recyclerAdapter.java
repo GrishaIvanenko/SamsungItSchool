@@ -49,8 +49,6 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
        holder.textViewTime.setText(parced_time);
        String Description = taskArrayList.get(position).getDescription();
        holder.textViewDescription.setText(Description);
-       Integer prior = taskArrayList.get(position).getPriority();
-       Integer nprior = parce_prior(prior);
 
 
 

@@ -5,21 +5,20 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.timedrive.database.code.TaskBase;
-import com.example.timedrive.database.code.Task;
 import com.example.timedrive.database.code.TaskDao;
 
-public class AsyncAdd extends AsyncTask<Task, Void, Void> {
+public class AsyncDelById extends AsyncTask<Integer, Void, Void> {
 
     private Context mContext;
 
-    private final String tag = "Adding to main base";
+    private final String tag = "Trying to Del Task by id from main base";
 
-    public AsyncAdd (Context context){
+    public AsyncDelById (Context context){
         mContext = context;
     }
 
     @Override
-    protected Void doInBackground(Task... roomTasks) {
+    protected Void doInBackground(Integer... integers) {
 
         Log.wtf(tag, "setup");
 
@@ -27,10 +26,9 @@ public class AsyncAdd extends AsyncTask<Task, Void, Void> {
         TaskDao dao = db.RoomTaskDao();
 
         Log.wtf(tag,
-                "info: " +
-                roomTasks[0].infoString());
+                "info: " + "Deleting All!");
 
-        dao.Insert(roomTasks[0]);
+        dao.deleteById(integers[0]);
 
         Log.wtf(tag, "Done!");
 
