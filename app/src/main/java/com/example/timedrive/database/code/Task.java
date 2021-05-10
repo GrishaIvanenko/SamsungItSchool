@@ -64,8 +64,6 @@ public class Task {
         return myPicture;
     }
 
-    ;
-
     public void setTitle(String title) {
         this.title = title;
     }
