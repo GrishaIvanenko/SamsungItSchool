@@ -1,5 +1,6 @@
 package com.example.timedrive.today.recyclerview;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,15 +23,12 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textViewTime;
+        private final TextView textViewTitle;
         private final TextView textViewDescription;
-        private final View layoutTaskView;
-
         public MyViewHolder (final View view) {
             super(view);
-            textViewTime = view.findViewById(R.id.textViewTime);
+            textViewTitle = view.findViewById(R.id.textViewTitle);
             textViewDescription = view.findViewById(R.id.textViewDescription);
-            layoutTaskView = view.findViewById(R.id.layoutTask);
         }
     }
 
@@ -44,26 +42,32 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull recyclerAdapter.MyViewHolder holder, int position) {
-       Integer time = taskArrayList.get(position).getTime();
-       String parced_time = parce_time(time);
-       holder.textViewTime.setText(parced_time);
-       String Description = taskArrayList.get(position).getDescription();
-       holder.textViewDescription.setText(Description);
+        String title = taskArrayList.get(position).getTitle();
+        Integer integerTime = taskArrayList.get(position).getTime();
+        String stringTime = parce_time(integerTime);
+        String scoreTitle = stringTime + ", " + title;
+        holder.textViewTitle.setText(scoreTitle);
 
-
+        String description = taskArrayList.get(position).getDescription();
+        holder.textViewDescription.setText(description);
 
     }
 
-    private Integer parce_prior(Integer prior) {
-        Integer res = prior * 1000;
-        return res;
-    }
 
     private String parce_time(Integer time) {
-        Integer ntime = time % (24 * 60);
-        Integer hours = ntime / 60;
-        Integer minutes = ntime % 60;
-        String ans = hours.toString() + ":" + minutes.toString();
+        String TAG = "parcing time";
+        if (time < 0 | time >= 60 * 24) {
+            Log.wtf(TAG, "parce_time Error: time = " + time.toString() + " BUT time must be [0; 24 * 60 * 60)!!!");
+            assert false;
+        }
+        Integer hours = time / 60;
+        Integer minutes = time % 60;
+        String ans;
+        if (minutes < 10)
+            ans = hours.toString() + ":0" + minutes.toString();
+        else
+            ans = hours.toString() + ":" + minutes.toString();
+        Log.wtf(TAG, "parce_time: " + ans + "; -OK!");
         return ans;
     }
 
