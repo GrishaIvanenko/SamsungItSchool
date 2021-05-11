@@ -119,4 +119,5 @@ public class Task {
         myPicture = Integer.parseInt(cash[6]);
         Log.d(TAG, "Parsing finished!");
     }
+
 }

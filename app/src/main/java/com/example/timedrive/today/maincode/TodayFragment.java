@@ -19,9 +19,12 @@ import com.example.timedrive.activity.AddActivity;
 import com.example.timedrive.database.asks.AsyncAll;
 import com.example.timedrive.database.code.Task;
 import com.example.timedrive.database.code.TaskBase;
+import com.example.timedrive.database.code.TaskTimeComparator;
 import com.example.timedrive.today.recyclerview.recyclerAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.concurrent.ExecutionException;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
@@ -74,6 +77,8 @@ public class TodayFragment extends Fragment {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+        Comparator taskTimeComparator = new TaskTimeComparator();
+        Collections.sort(cash, taskTimeComparator);
     }
 }
 

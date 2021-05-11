@@ -44,11 +44,6 @@ public class AddActivity extends AppCompatActivity implements TimePickerDialog.O
             Toast.makeText(getApplicationContext(), "Coming soon!", Toast.LENGTH_SHORT).show();
         });
 
-        iconColor = findViewById(R.id.color);
-        iconColor.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "Coming soon!", Toast.LENGTH_SHORT).show();
-        });
-
         myTime = findViewById(R.id.textViewTime);
         myTime.setOnClickListener(v -> {
             TimePickerDialog timePicker = new TimePickerDialog(
