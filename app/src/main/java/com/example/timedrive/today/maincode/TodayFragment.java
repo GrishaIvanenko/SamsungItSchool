@@ -16,10 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timedrive.R;
 import com.example.timedrive.activity.AddActivity;
-import com.example.timedrive.database.asks.AsyncAll;
+import com.example.timedrive.database.asks.AsyncAllWithDate;
 import com.example.timedrive.database.code.Task;
 import com.example.timedrive.database.code.TaskBase;
 import com.example.timedrive.database.code.TaskTimeComparator;
+import com.example.timedrive.extra.Helper;
 import com.example.timedrive.today.recyclerview.recyclerAdapter;
 
 import java.util.ArrayList;
@@ -70,8 +71,8 @@ public class TodayFragment extends Fragment {
     }
 
     private void refill() {
-        AsyncAll getter = new AsyncAll(this.getContext());
-        getter.execute();
+        AsyncAllWithDate getter = new AsyncAllWithDate(this.getContext());
+        getter.execute(Helper.getLongToday(), Helper.getLongToday());
         try {
             cash = getter.get();
         } catch (InterruptedException | ExecutionException e) {

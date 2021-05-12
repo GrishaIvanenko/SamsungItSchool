@@ -28,7 +28,10 @@ public interface TaskDao {
     @Query("Select * FROM Task WHERE id = :id")
     List<Task> getTaskWithId(int id);
 
-    @Query("Select * FROM Task WHERE Done = :done")
+    @Query("Select * FROM Task WHERE done = :done")
     List<Task> getTaskWithDone(boolean done);
+
+    @Query("Select * FROM Task WHERE date BETWEEN :dayFirst AND :dayLast")
+    List<Task> getTaskWIthDate(long dayFirst, long dayLast);
 
 }

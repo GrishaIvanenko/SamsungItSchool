@@ -13,6 +13,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import com.example.timedrive.R;
 import com.example.timedrive.database.asks.AsyncAdd;
 import com.example.timedrive.database.code.Task;
+import com.example.timedrive.extra.Helper;
 import com.google.android.material.textview.MaterialTextView;
 
 import java.util.Calendar;
@@ -62,8 +63,9 @@ public class AddActivity extends AppCompatActivity implements TimePickerDialog.O
             String title = myTitle.getText().toString();
             String description = myDescription.getText().toString();
             String stringTime = myTime.getText().toString();
-            Integer time = fromStringTimeToIntegerTime(stringTime);
-            Task task = new Task(title, description, 0, time, false, 0);
+            Integer time = Helper.fromStringTimeToIntegerTime(stringTime);
+            Long date = Helper.getLongToday();
+            Task task = new Task(title, description, date, time, false, 0);
             AsyncAdd adder = new AsyncAdd(getApplicationContext());
             adder.execute(task);
             try {
@@ -73,14 +75,6 @@ public class AddActivity extends AppCompatActivity implements TimePickerDialog.O
             }
             this.finish();
         });
-    }
-
-    private Integer fromStringTimeToIntegerTime(String s) {
-        String[] strings = s.split(":");
-        Integer hours = Integer.parseInt(strings[0]);
-        Integer minutes = Integer.parseInt(strings[1]);
-        Integer result = hours * 60 + minutes;
-        return result;
     }
 
     @Override
