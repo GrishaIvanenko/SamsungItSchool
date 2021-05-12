@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Task.class}, version = 1, exportSchema = false)
+@Database(entities = {Task.class}, version = 2, exportSchema = false)
 public abstract class TaskBase extends RoomDatabase {
     public abstract TaskDao RoomTaskDao();
 
@@ -17,7 +17,7 @@ public abstract class TaskBase extends RoomDatabase {
         if (instance == null) {
             synchronized (TaskBase.class) {
                 instance = Room.databaseBuilder(context.getApplicationContext(),
-                        TaskBase.class, "Task").build();
+                        TaskBase.class, "Task").fallbackToDestructiveMigration().build();
             }
         }
         return instance;

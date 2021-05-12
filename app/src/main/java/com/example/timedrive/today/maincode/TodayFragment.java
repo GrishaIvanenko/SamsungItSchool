@@ -78,7 +78,10 @@ public class TodayFragment extends Fragment {
             e.printStackTrace();
         }
         Comparator taskTimeComparator = new TaskTimeComparator();
-        Collections.sort(cash, taskTimeComparator);
+        if (cash != null)
+            Collections.sort(cash, taskTimeComparator);
+        else
+            cash = new ArrayList<>();
 
     }
 }
