@@ -79,6 +79,7 @@ public class TodayFragment extends Fragment {
         }
         Comparator taskTimeComparator = new TaskTimeComparator();
         Collections.sort(cash, taskTimeComparator);
+
     }
 }
 
