@@ -12,10 +12,16 @@
         tools:layout="@layout/fragment_today" />
 
     <fragment
+        android:id="@+id/navigation_week"
+        android:name="com.example.timedrive.week.maincode.WeekFragment"
+        android:label="@string/title_week"
+        tools:layout="@layout/fragment_week" />
+
+    <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.timedrive.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_week" />
 
     <fragment
         android:id="@+id/navigation_notifications"

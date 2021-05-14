@@ -1,4 +1,4 @@
-package com.example.timedrive.today.recyclerview;
+package com.example.timedrive.week.recyclerview;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,10 +45,13 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
         String title = taskArrayList.get(position).getTitle();
         Integer integerTime = taskArrayList.get(position).getTime();
         String stringTime = Helper.parce_time(integerTime);
-        String scoreTitle = stringTime + ", " + title;
+        Long date = taskArrayList.get(position).getDate();
+        String stringDate = Helper.parceDate(date);
+        String scoreTitle = stringDate + ", " + title;
         holder.textViewTitle.setText(scoreTitle);
         String description = taskArrayList.get(position).getDescription();
-        holder.textViewDescription.setText(description);
+        String scoreDescription = stringTime + ", " + description;
+        holder.textViewDescription.setText(scoreDescription);
     }
 
 

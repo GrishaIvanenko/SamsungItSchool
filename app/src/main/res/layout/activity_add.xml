@@ -7,16 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.AddActivity">
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/exit_add_button"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/ic_back_background"
-        android:src="@drawable/ic_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/textView"
@@ -109,5 +100,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
 
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textViewData"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="@string/titleData"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTime" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

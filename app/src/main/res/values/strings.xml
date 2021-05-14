@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TimeDrive</string>
     <string name="title_home">Home</string>
+    <string name="title_week">Week</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="icon_Description">Описание</string>
@@ -13,6 +14,7 @@
     <string name="titleTitle">Название</string>
     <string name="titleDescriprion">Описание</string>
     <string name="titleTime">Время</string>
+    <string name="titleData">Дата</string>
 
     <!--
     This string is used for square devices and overridden by hello_world in

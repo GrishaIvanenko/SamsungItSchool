@@ -1,4 +1,4 @@
-package com.example.timedrive.today.maincode;
+package com.example.timedrive.week.maincode;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,7 +30,7 @@ import java.util.concurrent.ExecutionException;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
-public class TodayFragment extends Fragment {
+public class WeekFragment extends Fragment {
     private TaskBase db;
     private RecyclerView recyclerView;
     private ArrayList<Task> cash;
@@ -38,18 +38,16 @@ public class TodayFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_today, container, false);
+        View root = inflater.inflate(R.layout.fragment_week, container, false);
         refill();
-        recyclerView = root.findViewById(R.id.recyclerViewInToday);
+        recyclerView = root.findViewById(R.id.recyclerViewInWeek);
         setAdapter();
-        add = root.findViewById(R.id.plus_post);
+        add = root.findViewById(R.id.plus_post_week);
         add.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), AddActivity.class);
             intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
             int somethingUseless = 1;
-
             startActivityForResult(intent, somethingUseless);
-
         });
         return root;
     }
@@ -72,7 +70,7 @@ public class TodayFragment extends Fragment {
 
     private void refill() {
         AsyncAllWithDate getter = new AsyncAllWithDate(this.getContext());
-        getter.execute(Helper.getLongToday(), Helper.getLongToday());
+        getter.execute(Helper.getLongToday(), Helper.getLongToday() + 6);
         try {
             cash = getter.get();
         } catch (InterruptedException | ExecutionException e) {

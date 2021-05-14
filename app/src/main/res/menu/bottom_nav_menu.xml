@@ -7,6 +7,11 @@
         android:title="" />
 
     <item
+        android:id="@+id/navigation_week"
+        android:icon="@drawable/ic_week_icon_selector"
+        android:title="" />
+
+    <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_dashboard" />
