@@ -40,11 +40,12 @@ public class Helper {
 
     public static String getStringDateToday() {
         String year1 = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-        String month = String.valueOf(Calendar.getInstance().get(Calendar.MONTH));
-        String date = String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
+        String month = String.valueOf(Calendar.getInstance().get(Calendar.MONTH) + 1);
+        String date = String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         String ans = with_nul(date) + "." + with_nul(month) + "." + year1;
         return ans;
     }
+
 
     public static String parceDate(Long data) {
         Integer year = (int)(data / 1000);
@@ -64,7 +65,7 @@ public class Helper {
         Calendar c = Calendar.getInstance();
         Log.d("DITCH", "LongDataFromStringData: " + cash[0] + " " + cash[1] + " " + cash[2]);
         c.set(Calendar.YEAR, Integer.valueOf(cash[2]));
-        c.set(Calendar.MONTH, Integer.valueOf(cash[1]));
+        c.set(Calendar.MONTH, Integer.valueOf(cash[1]) - 1);
         c.set(Calendar.DAY_OF_MONTH, Integer.valueOf(cash[0]));
         return Long.valueOf(Integer.valueOf(cash[2]) * 1000 + c.get(Calendar.DAY_OF_YEAR));
 
@@ -75,7 +76,7 @@ public class Helper {
     }
 
     public static Long getLongWeekEnd() {
-        return getLongToday() - Calendar.getInstance().get(Calendar.DAY_OF_WEEK) + Long.valueOf(7);
+        return getLongToday() - Calendar.getInstance().get(Calendar.DAY_OF_WEEK) + Long.valueOf(8);
     }
 
 }

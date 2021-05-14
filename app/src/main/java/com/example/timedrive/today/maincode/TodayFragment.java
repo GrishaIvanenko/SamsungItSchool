@@ -62,7 +62,7 @@ public class TodayFragment extends Fragment {
     }
 
     private void setAdapter() {
-        recyclerAdapter adapter = new recyclerAdapter(cash);
+        recyclerAdapter adapter = new recyclerAdapter(cash, getContext());
         RecyclerView.LayoutManager layoutManager =
                 new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);

@@ -34,4 +34,7 @@ public interface TaskDao {
     @Query("Select * FROM Task WHERE date BETWEEN :dayFirst AND :dayLast")
     List<Task> getTaskWIthDate(long dayFirst, long dayLast);
 
+    @Update
+    void update(Task task);
+
 }

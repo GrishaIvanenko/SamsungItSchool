@@ -106,7 +106,7 @@ public class AddActivity extends AppCompatActivity implements
         Calendar.getInstance().set(Calendar.MONTH, month);
         Calendar.getInstance().set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String res = Helper.with_nul(Integer.toString(dayOfMonth)) + "." +
-                Helper.with_nul(Integer.toString(month)) + "." + Integer.toString(year);
+                Helper.with_nul(Integer.toString(month + 1)) + "." + Integer.toString(year);
         myDate.setText(res);
     }
 
