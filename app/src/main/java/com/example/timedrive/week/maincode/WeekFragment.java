@@ -70,7 +70,7 @@ public class WeekFragment extends Fragment {
 
     private void refill() {
         AsyncAllWithDate getter = new AsyncAllWithDate(this.getContext());
-        getter.execute(Helper.getLongToday(), Helper.getLongToday() + 6);
+        getter.execute(Helper.getLongWeekBegin(), Helper.getLongWeekEnd());
         try {
             cash = getter.get();
         } catch (InterruptedException | ExecutionException e) {

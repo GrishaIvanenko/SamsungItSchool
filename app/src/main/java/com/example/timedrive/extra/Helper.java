@@ -70,4 +70,12 @@ public class Helper {
 
     }
 
+    public static Long getLongWeekBegin() {
+        return getLongToday() - Calendar.getInstance().get(Calendar.DAY_OF_WEEK) + Long.valueOf(1);
+    }
+
+    public static Long getLongWeekEnd() {
+        return getLongToday() - Calendar.getInstance().get(Calendar.DAY_OF_WEEK) + Long.valueOf(7);
+    }
+
 }
