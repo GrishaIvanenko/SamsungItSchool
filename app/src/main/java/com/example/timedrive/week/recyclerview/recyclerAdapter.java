@@ -1,5 +1,6 @@
 package com.example.timedrive.week.recyclerview;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
         holder.textViewTitle.setText(scoreTitle);
         String description = taskArrayList.get(position).getDescription();
         String scoreDescription = stringTime + ", " + description;
+        Log.d("WTF", "onBindViewHolder: " + scoreDescription);
         holder.textViewDescription.setText(scoreDescription);
     }
 

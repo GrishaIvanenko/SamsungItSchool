@@ -21,7 +21,7 @@ import com.example.timedrive.database.code.Task;
 import com.example.timedrive.database.code.TaskBase;
 import com.example.timedrive.extra.TaskTimeComparator;
 import com.example.timedrive.extra.Helper;
-import com.example.timedrive.today.recyclerview.recyclerAdapter;
+import com.example.timedrive.week.recyclerview.recyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
