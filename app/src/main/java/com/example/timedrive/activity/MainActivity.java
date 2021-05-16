@@ -1,8 +1,7 @@
 package com.example.timedrive.activity;
 
 import android.os.Bundle;
-import android.widget.ImageButton;
-import android.widget.Toast;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -15,8 +14,6 @@ import com.example.timedrive.database.code.TaskBase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ImageButton settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +29,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
+        ProgressBar tmp = findViewById(R.id.progressBarToday);
         TaskBase.getInstance(getApplicationContext());
-
-        settings = findViewById(R.id.settings);
-        settings.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "Not done", Toast.LENGTH_SHORT).show();
-        });
     }
 
 }

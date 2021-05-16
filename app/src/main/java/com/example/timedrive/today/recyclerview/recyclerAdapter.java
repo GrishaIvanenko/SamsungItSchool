@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,10 +22,15 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
 
     private ArrayList<Task> taskArrayList;
     private Context context;
+    private ProgressBar progressBar;
+    private TextView progressText;
 
-    public recyclerAdapter(ArrayList<Task> input, Context context) {
+    public recyclerAdapter(ArrayList<Task> input, Context context,
+                           ProgressBar progressBar, TextView progressText) {
         taskArrayList = input;
         this.context = context;
+        this.progressBar = progressBar;
+        this.progressText = progressText;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -64,6 +70,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
                 taskArrayList.get(position).setDone(false);
                 holder.checkBoxer.setChecked(false);
             }
+            Helper.setup_progress(taskArrayList, progressBar, progressText);
             Task prev = taskArrayList.get(position);
             AsyncUpdate rab = new AsyncUpdate(context);
             rab.execute(prev);

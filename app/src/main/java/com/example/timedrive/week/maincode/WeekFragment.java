@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -35,10 +37,16 @@ public class WeekFragment extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<Task> cash;
     private ImageButton add;
+    private ProgressBar progressBar;
+    private TextView progress;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_week, container, false);
+
+        progressBar = root.findViewById(R.id.progressBarWeek);
+        progress = root.findViewById(R.id.textViewWeekProgress);
+
         refill();
         recyclerView = root.findViewById(R.id.recyclerViewInWeek);
         setAdapter();
@@ -49,6 +57,9 @@ public class WeekFragment extends Fragment {
             int somethingUseless = 1;
             startActivityForResult(intent, somethingUseless);
         });
+
+        Helper.setup_progress(cash, progressBar, progress);
+
         return root;
     }
 
@@ -60,7 +71,7 @@ public class WeekFragment extends Fragment {
     }
 
     private void setAdapter() {
-        recyclerAdapter adapter = new recyclerAdapter(cash, getContext());
+        recyclerAdapter adapter = new recyclerAdapter(cash, getContext(), progressBar, progress);
         RecyclerView.LayoutManager layoutManager =
                 new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);

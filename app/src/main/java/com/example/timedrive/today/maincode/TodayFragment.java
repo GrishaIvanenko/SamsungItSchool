@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -35,10 +38,17 @@ public class TodayFragment extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<Task> cash;
     private ImageButton add;
+    private ImageButton settings;
+    private ProgressBar progressBar;
+    private TextView progress;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_today, container, false);
+
+        progressBar = root.findViewById(R.id.progressBarToday);
+        progress = root.findViewById(R.id.textViewTodayProgress);
+
         refill();
         recyclerView = root.findViewById(R.id.recyclerViewInToday);
         setAdapter();
@@ -47,10 +57,17 @@ public class TodayFragment extends Fragment {
             Intent intent = new Intent(getContext(), AddActivity.class);
             intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
             int somethingUseless = 1;
-
             startActivityForResult(intent, somethingUseless);
 
         });
+
+        settings = root.findViewById(R.id.settingsToday);
+        settings.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "Not done", Toast.LENGTH_SHORT).show();
+        });
+
+        Helper.setup_progress(cash, progressBar, progress);
+
         return root;
     }
 
@@ -62,7 +79,7 @@ public class TodayFragment extends Fragment {
     }
 
     private void setAdapter() {
-        recyclerAdapter adapter = new recyclerAdapter(cash, getContext());
+        recyclerAdapter adapter = new recyclerAdapter(cash, getContext(), progressBar, progress);
         RecyclerView.LayoutManager layoutManager =
                 new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -85,5 +102,6 @@ public class TodayFragment extends Fragment {
             cash = new ArrayList<>();
 
     }
+
 }
 

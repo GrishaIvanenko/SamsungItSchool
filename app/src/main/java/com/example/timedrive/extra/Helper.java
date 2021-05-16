@@ -1,8 +1,14 @@
 package com.example.timedrive.extra;
 
 import android.util.Log;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import com.example.timedrive.R;
+import com.example.timedrive.database.code.Task;
 
 import java.text.DateFormatSymbols;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Helper {
@@ -77,6 +83,39 @@ public class Helper {
 
     public static Long getLongWeekEnd() {
         return getLongToday() - Calendar.getInstance().get(Calendar.DAY_OF_WEEK) + Long.valueOf(8);
+    }
+
+    public static void setup_progress(ArrayList<Task> cash, ProgressBar progressBar, TextView progress) {
+        if (cash == null || cash.size() == 0) {
+            progressBar.setProgress(0);
+            progress.setText(R.string.noTask);
+        } else {
+            int kolv = 0;
+            for (int i = 0; i < cash.size(); ++i)
+                if (cash.get(i).getDone() == true)
+                    ++kolv;
+            Integer pers = (100 * kolv) / cash.size();
+            progressBar.setProgress(pers);
+            String reaction = getres(pers);
+            String score = "Выполнено " + pers.toString() + "% задач\n" + reaction;
+            progress.setText(score);
+        }
+    }
+
+    public static String getres(int pers) {
+        if (0 <= pers && pers < 20)
+            return "Работы еще много!";
+        if (20 <= pers && pers < 40)
+            return "Это немного, зато честная работа";
+        if (40 <= pers && pers < 60)
+            return "Осталось примерно столько же";
+        if (60 <= pers && pers < 80)
+            return "Уже не стыдно!";
+        if (80 <= pers && pers < 100)
+            return "Всегда бы так работал!";
+        if (pers == 100)
+            return "Возьми с полки пирожок!";
+        return "Кривой процент!";
     }
 
 }
