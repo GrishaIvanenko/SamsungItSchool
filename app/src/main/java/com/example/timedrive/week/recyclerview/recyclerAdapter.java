@@ -11,13 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timedrive.R;
-import com.example.timedrive.database.asks.AsyncAllWithDate;
 import com.example.timedrive.database.asks.AsyncUpdate;
 import com.example.timedrive.database.code.Task;
 import com.example.timedrive.extra.Helper;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyViewHolder> {
 
@@ -62,35 +60,24 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
         String scoreDescription = stringTime + ", " + description;
         holder.textViewDescription.setText(scoreDescription);
 
-        holder.checkBoxer.setOnClickListener(v-> {
-            if (holder.checkBoxer.isChecked()) {
-                taskArrayList.get(position).setDone(true);
-            } else {
-                taskArrayList.get(position).setDone(false);
-            }
-            Task prev = taskArrayList.get(position);
-            AsyncUpdate rab = new AsyncUpdate(context);
-            rab.execute(prev);
-            try {
-                rab.get();
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
-            }
-            AsyncAllWithDate getter = new AsyncAllWithDate(context);
-            getter.execute(Helper.getLongToday(), Helper.getLongToday());
-            try {
-                taskArrayList = getter.get();
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
-            }
-            onBindViewHolder(holder, position);
-        });
-
         if (taskArrayList.get(position).getDone() == true) {
             holder.checkBoxer.setChecked(true);
         } else {
             holder.checkBoxer.setChecked(false);
         }
+
+        holder.checkBoxer.setOnClickListener(v-> {
+            if (holder.checkBoxer.isChecked()) {
+                taskArrayList.get(position).setDone(true);
+                holder.checkBoxer.setChecked(true);
+            } else {
+                taskArrayList.get(position).setDone(false);
+                holder.checkBoxer.setChecked(false);
+            }
+            Task prev = taskArrayList.get(position);
+            AsyncUpdate rab = new AsyncUpdate(context);
+            rab.execute(prev);
+        });
 
     }
 
