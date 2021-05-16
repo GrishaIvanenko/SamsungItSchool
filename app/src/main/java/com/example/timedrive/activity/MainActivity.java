@@ -32,5 +32,4 @@ public class MainActivity extends AppCompatActivity {
         ProgressBar tmp = findViewById(R.id.progressBarToday);
         TaskBase.getInstance(getApplicationContext());
     }
-
 }

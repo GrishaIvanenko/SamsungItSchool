@@ -64,6 +64,18 @@ public class Helper {
         return ans;
     }
 
+    public static String getStringDate(Long data) {
+        Integer year = (int)(data / 1000);
+        Integer day = (int)(data % 1000);
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.DAY_OF_YEAR, day);
+        String ans = Helper.with_nul(String.valueOf(c.get(Calendar.DAY_OF_MONTH))) +
+                "." + Helper.with_nul(String.valueOf(c.get(Calendar.MONTH) + 1)) +
+                "." + String.valueOf(c.get(Calendar.YEAR));
+        return ans;
+    }
+
     public static Long LongDataFromStringData(String input) {
         Log.d("DITCH", "LongDataFromStringData: " + input);
         String[] cash = input.split("\\.");

@@ -2,6 +2,7 @@ package com.example.timedrive.activity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
 
 import com.example.timedrive.R;
 import com.example.timedrive.database.asks.AsyncAdd;
+import com.example.timedrive.database.asks.AsyncDelById;
 import com.example.timedrive.database.code.Task;
 import com.example.timedrive.extra.Helper;
 import com.google.android.material.textview.MaterialTextView;
@@ -36,12 +38,15 @@ public class AddActivity extends AppCompatActivity implements
     private AppCompatImageButton main_ic;
     private ArrayList<Integer> input;
     private int position;
+    private AppCompatImageButton delete22;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+
+        delete22 = findViewById(R.id.icon_delete);
 
         go_left = findViewById(R.id.icon_left_move228);
         go_left.setImageResource(R.drawable.ic_go_left);
@@ -109,6 +114,34 @@ public class AddActivity extends AppCompatActivity implements
             }
             this.finish();
         });
+
+        Intent intent = getIntent();
+        String type = intent.getStringExtra("Edit");
+        Integer res = Integer.parseInt(type);
+        if (res == 0)
+            return;
+        delete22.setBackgroundResource(R.drawable.ic_delete_shape);
+        delete22.setImageResource(R.drawable.ic_delete);
+        delete22.setOnClickListener(v-> {
+            AsyncDelById rab = new AsyncDelById(getApplicationContext());
+            rab.execute(Integer.parseInt(intent.getStringExtra("id")));
+            try {
+                rab.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+            this.finish();
+        });
+
+        Task task = new Task(intent.getStringExtra("TaskData"));
+        myTitle.setText(task.getTitle());
+        myDescription.setText(task.getDescription());
+        myTime.setText(Helper.parce_time(task.getTime()));
+        myDate.setText(Helper.getStringDate(task.getDate()));
+        for (int i = 0; i < input.size(); ++i)
+            if (input.get(i) == task.getMyPicture())
+                position = i;
+        redraw();
     }
 
     @Override

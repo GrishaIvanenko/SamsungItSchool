@@ -102,11 +102,14 @@ public class Task {
 
     @Ignore
     public Task(String data) {
-        String TAG = "From String to Task";
-        String[] cash = data.split(" $ ");
-        if (cash.length != 6) {
+        Log.d("INFO123", "Task: " + data);
+        String TAG = "FromStringtoTask";
+        String[] cash = data.split(" \\$ ");
+        if (cash.length != 7) {
             Log.d(TAG, "BAD DATA: data.size() = " +  String.valueOf(cash.length) +
                     "instead of ");
+            for (int i =0 ; i < cash.length; ++i)
+                Log.d(TAG, "elem " + String.valueOf(i) + " = " + cash[i]);
             assert false;
         }
         Log.d(TAG, "Start parsing");
