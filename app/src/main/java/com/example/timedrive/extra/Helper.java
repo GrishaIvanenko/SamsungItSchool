@@ -118,4 +118,12 @@ public class Helper {
         return "Кривой процент!";
     }
 
+    public static int iconById(int id) {
+        if (id == 0) return R.drawable.ic_homework;
+        if (id == 1) return R.drawable.ic_gym;
+        if (id == 2) return R.drawable.ic_phone;
+        if (id == 3) return R.drawable.ic_train;
+        return R.drawable.ic_settings;
+    }
+
 }

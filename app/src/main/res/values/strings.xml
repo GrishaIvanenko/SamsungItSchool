@@ -10,7 +10,7 @@
     <string name="add_task">Добавление задачи</string>
     <string name="finally_add">Добавить!</string>
     <string name="selectColor">Выбрать цвет</string>
-    <string name="selectIcon">Выбрать иконку</string>
+    <string name="selectIcon">Выбранная иконка</string>
     <string name="titleTitle">Название</string>
     <string name="titleDescriprion">Описание</string>
     <string name="titleTime">Время</string>

@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timedrive.R;
@@ -37,11 +38,13 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
         private final TextView textViewTitle;
         private final TextView textViewDescription;
         private final CheckBox checkBoxer;
+        private final AppCompatImageButton icon;
         public MyViewHolder (final View view) {
             super(view);
             textViewTitle = view.findViewById(R.id.textViewTitle);
             textViewDescription = view.findViewById(R.id.textViewDescription);
             checkBoxer = view.findViewById(R.id.checkBox);
+            icon = view.findViewById(R.id.itemIcon);
         }
     }
 
@@ -81,6 +84,8 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
         } else {
             holder.checkBoxer.setChecked(false);
         }
+
+        holder.icon.setImageResource(Helper.iconById(taskArrayList.get(position).getMyPicture()));
     }
 
 

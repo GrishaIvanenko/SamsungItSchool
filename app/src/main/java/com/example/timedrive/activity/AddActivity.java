@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -18,30 +17,50 @@ import com.example.timedrive.database.code.Task;
 import com.example.timedrive.extra.Helper;
 import com.google.android.material.textview.MaterialTextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
 public class AddActivity extends AppCompatActivity implements
         TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
-    private AppCompatImageButton iconSelector;
-    private AppCompatImageButton iconColor;
     private MaterialTextView myTime;
     private MaterialTextView myDate;
     private AppCompatButton finishHin;
     private EditText myTitle;
     private  EditText myDescription;
+    private AppCompatImageButton go_left;
+    private AppCompatImageButton go_right;
+    private AppCompatImageButton left_ic;
+    private AppCompatImageButton right_ic;
+    private AppCompatImageButton main_ic;
+    private ArrayList<Integer> input;
+    private int position;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-        iconSelector = findViewById(R.id.icon);
-        iconSelector.setImageResource(R.drawable.ic_gym);
-        iconSelector.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "Coming soon!", Toast.LENGTH_SHORT).show();
+        go_left = findViewById(R.id.icon_left_move228);
+        go_left.setImageResource(R.drawable.ic_go_left);
+        go_left.setOnClickListener(v -> {
+            position = prev(position);
+            redraw();
         });
+
+        go_right = findViewById(R.id.icon_right_move228);
+        go_right.setImageResource(R.drawable.ic_go_right);
+        go_right.setOnClickListener(v -> {
+            position = next(position);
+            redraw();
+        });
+
+        left_ic = findViewById(R.id.icon_left);
+        right_ic = findViewById(R.id.icon_right);
+        main_ic = findViewById(R.id.icon_selected);
+        setup_icons();
 
         myTime = findViewById(R.id.textViewTime);
         myTime.setText(Helper.parce_time(
@@ -80,7 +99,7 @@ public class AddActivity extends AppCompatActivity implements
             String stringTime = myTime.getText().toString();
             Integer time = Helper.fromStringTimeToIntegerTime(stringTime);
             Long date = Helper.LongDataFromStringData(myDate.getText().toString());
-            Task task = new Task(title, description, date, time, false, 0);
+            Task task = new Task(title, description, date, time, false, input.get(position));
             AsyncAdd adder = new AsyncAdd(getApplicationContext());
             adder.execute(task);
             try {
@@ -108,6 +127,38 @@ public class AddActivity extends AppCompatActivity implements
         String res = Helper.with_nul(Integer.toString(dayOfMonth)) + "." +
                 Helper.with_nul(Integer.toString(month + 1)) + "." + Integer.toString(year);
         myDate.setText(res);
+    }
+
+    private void setup_icons() {
+        input = new ArrayList<>();
+        input.add(0);
+        input.add(1);
+        input.add(2);
+        input.add(3);
+        position = 1;
+        redraw();
+    }
+
+    private int prev(int x) {
+        if (x != 0)
+            return x - 1;
+        return input.size() - 1;
+    }
+
+    private int next(int x) {
+        if (x + 1 == input.size())
+            return 0;
+        return x + 1;
+    }
+
+    private void redraw() {
+        int left = input.get(prev(position));
+        int mid = input.get(position);
+        int right = input.get(next(position));
+
+        left_ic.setImageResource(Helper.iconById(left));
+        main_ic.setImageResource(Helper.iconById(mid));
+        right_ic.setImageResource(Helper.iconById(right));
     }
 
 

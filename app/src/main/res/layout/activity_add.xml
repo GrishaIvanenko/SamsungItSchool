@@ -8,6 +8,38 @@
     tools:context=".activity.AddActivity">
 
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/icon_left_move228"
+        android:layout_width="30dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:background="@color/gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:src="@drawable/ic_go_left" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/icon_left"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:background="@color/gray"
+        app:layout_constraintStart_toEndOf="@+id/icon_left_move228"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:src="@drawable/ic_gym" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/icon_right_move228"
+        android:layout_width="30dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:src="@drawable/ic_go_right" />
 
     <TextView
         android:id="@+id/textView"
@@ -35,24 +67,35 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/icon"
+        android:id="@+id/icon_right"
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/round_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/gray"
+        app:layout_constraintEnd_toStartOf="@+id/icon_right_move228"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:src="@drawable/ic_gym" />
+        tools:src="@drawable/ic_phone" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/icon_selected"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/round_button"
+        app:layout_constraintEnd_toStartOf="@+id/icon_right"
+        app:layout_constraintStart_toEndOf="@+id/icon_left"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:src="@drawable/ic_homework" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/selectIcon"
-        app:layout_constraintEnd_toEndOf="@+id/icon"
-        app:layout_constraintStart_toStartOf="@+id/icon"
-        app:layout_constraintTop_toBottomOf="@+id/icon" />
+        app:layout_constraintEnd_toEndOf="@+id/icon_selected"
+        app:layout_constraintStart_toStartOf="@+id/icon_selected"
+        app:layout_constraintTop_toBottomOf="@+id/icon_right" />
 
     <EditText
         android:id="@+id/textViewTitle"
