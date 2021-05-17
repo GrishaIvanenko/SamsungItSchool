@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -19,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timedrive.R;
 import com.example.timedrive.activity.AddActivity;
+import com.example.timedrive.activity.SettingsActivity;
 import com.example.timedrive.database.asks.AsyncAllWithDate;
 import com.example.timedrive.database.code.Task;
 import com.example.timedrive.database.code.TaskBase;
@@ -64,7 +64,10 @@ public class TodayFragment extends Fragment {
 
         settings = root.findViewById(R.id.settingsToday);
         settings.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Not done", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getContext(), SettingsActivity.class);
+            intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+            int somethingUseless = 1;
+            startActivityForResult(intent, somethingUseless);
         });
 
         Helper.setup_progress(cash, progressBar, progress, getContext());

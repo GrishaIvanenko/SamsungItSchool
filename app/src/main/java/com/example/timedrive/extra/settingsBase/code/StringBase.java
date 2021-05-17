@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.timedrive.extra.settingsBase.asks.AsyncAdd;
 import com.example.timedrive.extra.settingsBase.asks.AsyncGetByName;
+import com.example.timedrive.extra.settingsBase.asks.AsyncUpdate;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -73,6 +74,24 @@ public abstract class StringBase extends RoomDatabase {
         Log.d("SETTING STRINGBASE NAME=" + title, "Done!");
     }
 
+    public static String getValue(Context context, String title) {
+        AsyncGetByName rab = new AsyncGetByName(context);
+        rab.execute(title);
+        ArrayList<StringItem> res = new ArrayList<StringItem>();
+        try {
+            res = rab.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (res != null && res.size() == 1) {
+            return res.get(0).getValue();
+        }
+        Log.d("DITCH", "NO this!");
+        return null;
+    }
+
     public static void change(Context context, String name, String nw) {
         AsyncGetByName rab = new AsyncGetByName(context);
         rab.execute(name);
@@ -92,7 +111,17 @@ public abstract class StringBase extends RoomDatabase {
             Log.d("DITCH", "No string with this title!, ans.size() = " + String.valueOf(res.size()));
             return;
         }
-
-        Log.d("DONE", "change completed!");
+        StringItem kekw = res.get(0);
+        kekw.setValue(nw);
+        AsyncUpdate rab1 = new AsyncUpdate(context);
+        rab1.execute(kekw);
+        try {
+            rab1.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Log.d("DONE228", "change completed!" + kekw.getidId() + " " + kekw.getTitle() + " " + kekw.getValue() + " but " + nw);
     }
 }

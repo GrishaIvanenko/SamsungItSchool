@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timedrive.R;
 import com.example.timedrive.activity.AddActivity;
+import com.example.timedrive.activity.SettingsActivity;
 import com.example.timedrive.database.asks.AsyncAllWithDate;
 import com.example.timedrive.database.code.Task;
 import com.example.timedrive.database.code.TaskBase;
@@ -39,6 +40,7 @@ public class WeekFragment extends Fragment {
     private ImageButton add;
     private ProgressBar progressBar;
     private TextView progress;
+    private ImageButton settings;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -60,6 +62,14 @@ public class WeekFragment extends Fragment {
         });
 
         Helper.setup_progress(cash, progressBar, progress, getContext());
+
+        settings = root.findViewById(R.id.settingsWeek);
+        settings.setOnClickListener(v-> {
+            Intent intent = new Intent(getContext(), SettingsActivity.class);
+            intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+            int somethingUseless = 1;
+            startActivityForResult(intent, somethingUseless);
+        });
 
         return root;
     }

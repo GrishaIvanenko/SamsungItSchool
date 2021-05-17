@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +41,7 @@ public class AddActivity extends AppCompatActivity implements
     private ArrayList<Integer> input;
     private int position;
     private AppCompatImageButton delete22;
+    private ImageButton settings;
 
 
     @Override

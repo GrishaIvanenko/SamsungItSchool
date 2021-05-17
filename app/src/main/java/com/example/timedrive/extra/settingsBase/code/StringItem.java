@@ -37,7 +37,7 @@ public class StringItem {
         this.title = title;
     }
 
-    public void setValue(String description) {
+    public void setValue(String value) {
         this.value = value;
     }
 
