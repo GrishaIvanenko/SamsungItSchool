@@ -22,8 +22,8 @@ import com.example.timedrive.activity.AddActivity;
 import com.example.timedrive.database.asks.AsyncAllWithDate;
 import com.example.timedrive.database.code.Task;
 import com.example.timedrive.database.code.TaskBase;
-import com.example.timedrive.extra.TaskTimeComparator;
 import com.example.timedrive.extra.Helper;
+import com.example.timedrive.extra.TaskTimeComparator;
 import com.example.timedrive.today.recyclerview.recyclerAdapter;
 
 import java.util.ArrayList;
@@ -74,9 +74,10 @@ public class TodayFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("DONE", "onActivityResult: ");
         refill();
         setAdapter();
+        Helper.setup_progress(cash, progressBar, progress);
+        Log.d("COMEBACK", "onActivityResult: " + cash.size());
     }
 
     private void setAdapter() {

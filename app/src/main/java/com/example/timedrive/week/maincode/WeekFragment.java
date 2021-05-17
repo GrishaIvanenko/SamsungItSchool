@@ -71,7 +71,7 @@ public class WeekFragment extends Fragment {
     }
 
     private void setAdapter() {
-        recyclerAdapter adapter = new recyclerAdapter(cash, getContext(), progressBar, progress);
+        recyclerAdapter adapter = new recyclerAdapter(cash, getContext(), progressBar, progress, this);
         RecyclerView.LayoutManager layoutManager =
                 new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -93,6 +93,15 @@ public class WeekFragment extends Fragment {
         else
             cash = new ArrayList<>();
 
+    }
+
+    public void callEdit(Task task) {
+        Intent intent = new Intent(getContext(), AddActivity.class);
+        intent.putExtra("Edit", "1");
+        intent.putExtra("TaskData", task.toString());
+        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+        int somethingUseless = 1;
+        startActivityForResult(intent, somethingUseless);
     }
 }
 

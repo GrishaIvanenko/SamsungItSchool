@@ -15,6 +15,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import com.example.timedrive.R;
 import com.example.timedrive.database.asks.AsyncAdd;
 import com.example.timedrive.database.asks.AsyncDelById;
+import com.example.timedrive.database.asks.AsyncUpdate;
 import com.example.timedrive.database.code.Task;
 import com.example.timedrive.extra.Helper;
 import com.google.android.material.textview.MaterialTextView;
@@ -120,11 +121,14 @@ public class AddActivity extends AppCompatActivity implements
         Integer res = Integer.parseInt(type);
         if (res == 0)
             return;
+
+        Task task = new Task(intent.getStringExtra("TaskData"));
+
         delete22.setBackgroundResource(R.drawable.ic_delete_shape);
         delete22.setImageResource(R.drawable.ic_delete);
         delete22.setOnClickListener(v-> {
             AsyncDelById rab = new AsyncDelById(getApplicationContext());
-            rab.execute(Integer.parseInt(intent.getStringExtra("id")));
+            rab.execute(task.getidId());
             try {
                 rab.get();
             } catch (InterruptedException | ExecutionException e) {
@@ -133,7 +137,6 @@ public class AddActivity extends AppCompatActivity implements
             this.finish();
         });
 
-        Task task = new Task(intent.getStringExtra("TaskData"));
         myTitle.setText(task.getTitle());
         myDescription.setText(task.getDescription());
         myTime.setText(Helper.parce_time(task.getTime()));
@@ -142,6 +145,27 @@ public class AddActivity extends AppCompatActivity implements
             if (input.get(i) == task.getMyPicture())
                 position = i;
         redraw();
+        finishHin.setOnClickListener(v -> {
+            String title = myTitle.getText().toString();
+            String description = myDescription.getText().toString();
+            String stringTime = myTime.getText().toString();
+            Integer time = Helper.fromStringTimeToIntegerTime(stringTime);
+            Long date = Helper.LongDataFromStringData(myDate.getText().toString());
+            task.setTitle(title);
+            task.setDescription(description);
+            task.setTime(time);
+            task.setDate(date);
+            task.setMyPicture(input.get(position));
+            AsyncUpdate adder = new AsyncUpdate(getApplicationContext());
+            adder.execute(task);
+            try {
+                adder.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+            this.finish();
+        });
+
     }
 
     @Override
