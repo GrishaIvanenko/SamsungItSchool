@@ -18,10 +18,10 @@
         tools:layout="@layout/fragment_week" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.timedrive.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_week" />
+        android:id="@+id/navigation_all"
+        android:name="com.example.timedrive.all.maincode.AllFragment"
+        android:label="@string/title_all"
+        tools:layout="@layout/fragment_all" />
 
     <fragment
         android:id="@+id/navigation_notifications"

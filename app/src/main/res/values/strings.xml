@@ -2,7 +2,7 @@
     <string name="app_name">TimeDrive</string>
     <string name="title_home">Home</string>
     <string name="title_week">Week</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_all">Все задачи</string>
     <string name="title_notifications">Notifications</string>
     <string name="icon_Description">Описание</string>
     <string name="settings">Настройки</string>

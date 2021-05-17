@@ -1,4 +1,4 @@
-package com.example.timedrive.week.maincode;
+package com.example.timedrive.all.maincode;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ import com.example.timedrive.database.code.Task;
 import com.example.timedrive.database.code.TaskBase;
 import com.example.timedrive.extra.TaskTimeComparator;
 import com.example.timedrive.extra.Helper;
-import com.example.timedrive.week.recyclerview.recyclerAdapter;
+import com.example.timedrive.all.recyclerview.recyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,7 +32,7 @@ import java.util.concurrent.ExecutionException;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
-public class WeekFragment extends Fragment {
+public class AllFragment extends Fragment {
     private TaskBase db;
     private RecyclerView recyclerView;
     private ArrayList<Task> cash;
@@ -42,21 +42,22 @@ public class WeekFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_week, container, false);
+        View root = inflater.inflate(R.layout.fragment_all, container, false);
 
-        progressBar = root.findViewById(R.id.progressBarWeek);
-        progress = root.findViewById(R.id.textViewWeekProgress);
+        progressBar = root.findViewById(R.id.progressBarAll);
+        progress = root.findViewById(R.id.textViewAllProgress);
 
         refill();
-        recyclerView = root.findViewById(R.id.recyclerViewInWeek);
+        recyclerView = root.findViewById(R.id.recyclerViewInAll);
         setAdapter();
-        add = root.findViewById(R.id.plus_post_week);
+        add = root.findViewById(R.id.plus_post_all);
         add.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), AddActivity.class);
             intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtra("Edit", "0");
             int somethingUseless = 1;
             startActivityForResult(intent, somethingUseless);
+            Log.d("WTF", "onCreateView: ");
         });
 
         Helper.setup_progress(cash, progressBar, progress);
@@ -82,7 +83,7 @@ public class WeekFragment extends Fragment {
 
     private void refill() {
         AsyncAllWithDate getter = new AsyncAllWithDate(this.getContext());
-        getter.execute(Helper.getLongWeekBegin(), Helper.getLongWeekEnd());
+        getter.execute(Long.valueOf(0), Long.valueOf(1000000000));
         try {
             cash = getter.get();
         } catch (InterruptedException | ExecutionException e) {

@@ -76,6 +76,14 @@ public class Helper {
         return ans;
     }
 
+    public static String getStringDateWithFeatures(Long date) {
+        if (date == getLongToday())
+            return "Сегодня";
+        if (getLongWeekBegin() <= date && date <= getLongWeekEnd())
+            return parceDate(date);
+        return getStringDate(date);
+    }
+
     public static Long LongDataFromStringData(String input) {
         Log.d("DITCH", "LongDataFromStringData: " + input);
         String[] cash = input.split("\\.");
