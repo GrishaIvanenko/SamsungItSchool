@@ -145,6 +145,8 @@ public class AddActivity extends AppCompatActivity implements
             if (input.get(i) == task.getMyPicture())
                 position = i;
         redraw();
+
+        finishHin.setText("Обновить!");
         finishHin.setOnClickListener(v -> {
             String title = myTitle.getText().toString();
             String description = myDescription.getText().toString();
