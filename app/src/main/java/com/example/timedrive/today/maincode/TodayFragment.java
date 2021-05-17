@@ -67,7 +67,7 @@ public class TodayFragment extends Fragment {
             Toast.makeText(getContext(), "Not done", Toast.LENGTH_SHORT).show();
         });
 
-        Helper.setup_progress(cash, progressBar, progress);
+        Helper.setup_progress(cash, progressBar, progress, getContext());
 
         return root;
     }
@@ -76,7 +76,7 @@ public class TodayFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         refill();
         setAdapter();
-        Helper.setup_progress(cash, progressBar, progress);
+        Helper.setup_progress(cash, progressBar, progress, getContext());
         Log.d("COMEBACK", "onActivityResult: " + cash.size());
     }
 

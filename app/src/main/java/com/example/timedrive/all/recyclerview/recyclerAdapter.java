@@ -79,7 +79,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
                 taskArrayList.get(position).setDone(false);
                 holder.checkBoxer.setChecked(false);
             }
-            Helper.setup_progress(taskArrayList, progressBar, progressText);
+            Helper.setup_progress(taskArrayList, progressBar, progressText, context);
             Task prev = taskArrayList.get(position);
             AsyncUpdate rab = new AsyncUpdate(context);
             rab.execute(prev);

@@ -12,7 +12,7 @@ public class AsyncUpdate extends AsyncTask<Task, Void, Void> {
 
     private Context mContext;
 
-    private final String tag = "Adding to main base";
+    private final String tag = "Update to main base";
 
     public AsyncUpdate (Context context){
         mContext = context;

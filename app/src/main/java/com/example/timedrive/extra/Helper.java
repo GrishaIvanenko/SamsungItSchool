@@ -1,17 +1,22 @@
 package com.example.timedrive.extra;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.timedrive.R;
 import com.example.timedrive.database.code.Task;
+import com.example.timedrive.extra.settingsBase.asks.AsyncGetByName;
+import com.example.timedrive.extra.settingsBase.code.StringItem;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.concurrent.ExecutionException;
 
 public class Helper {
+
     public static Integer fromStringTimeToIntegerTime(String s) {
         String[] strings = s.split(":");
         Integer hours = Integer.parseInt(strings[0]);
@@ -105,10 +110,10 @@ public class Helper {
         return getLongToday() - Calendar.getInstance().get(Calendar.DAY_OF_WEEK) + Long.valueOf(8);
     }
 
-    public static void setup_progress(ArrayList<Task> cash, ProgressBar progressBar, TextView progress) {
+    public static void setup_progress(ArrayList<Task> cash, ProgressBar progressBar, TextView progress, Context context) {
         if (cash == null || cash.size() == 0) {
             progressBar.setProgress(0);
-            progress.setText(R.string.noTask);
+            progress.setText(getByName(context, "no_result"));
         } else {
             int kolv = 0;
             for (int i = 0; i < cash.size(); ++i)
@@ -116,26 +121,45 @@ public class Helper {
                     ++kolv;
             Integer pers = (100 * kolv) / cash.size();
             progressBar.setProgress(pers);
-            String reaction = getres(pers);
+            String reaction = getres(context, pers);
             String score = "Выполнено " + pers.toString() + "% задач\n" + reaction;
             progress.setText(score);
         }
     }
 
-    public static String getres(int pers) {
+    public static String getres(Context context, int pers) {
         if (0 <= pers && pers < 20)
-            return "Работы еще много!";
+            return getByName(context, "resultfrom0to20");
         if (20 <= pers && pers < 40)
-            return "Это немного, зато честная работа";
+            return getByName(context, "resultfrom20to40");
         if (40 <= pers && pers < 60)
-            return "Осталось примерно столько же";
+            return getByName(context, "resultfrom40to60");
         if (60 <= pers && pers < 80)
-            return "Уже не стыдно!";
+            return getByName(context, "resultfro60to80");
         if (80 <= pers && pers < 100)
-            return "Всегда бы так работал!";
+            return getByName(context, "resultfrom80to100");
         if (pers == 100)
-            return "Возьми с полки пирожок!";
+            return getByName(context, "resultfrom100to100");
         return "Кривой процент!";
+    }
+
+
+    public static String getByName(Context context, String title) {
+        AsyncGetByName rab = new AsyncGetByName(context);
+        rab.execute(title);
+        ArrayList<StringItem>  ans = new ArrayList<StringItem>();
+        try {
+            ans = rab.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (ans == null || ans.size() != 1) {
+            Log.d("WTF", "хрень в запросе по имени");
+            assert (false);
+        }
+        return ans.get(0).getValue();
     }
 
     public static int iconById(int id) {

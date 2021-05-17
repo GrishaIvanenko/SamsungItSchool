@@ -60,7 +60,7 @@ public class AllFragment extends Fragment {
             Log.d("WTF", "onCreateView: ");
         });
 
-        Helper.setup_progress(cash, progressBar, progress);
+        Helper.setup_progress(cash, progressBar, progress, getContext());
 
         return root;
     }
