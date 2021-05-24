@@ -90,6 +90,7 @@ public class TodayFragment extends Fragment {
         setAdapter();
         Helper.setup_progress(cash, progressBar, progress, getContext());
         Log.d("COMEBACK", "onActivityResult: " + cash.size());
+        Helper.setup_progress(cash, progressBar, progress, getContext());
     }
 
     private void setAdapter() {

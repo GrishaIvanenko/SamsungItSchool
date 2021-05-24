@@ -89,6 +89,7 @@ public class AllFragment extends Fragment {
         Log.d("DONE", "onActivityResult: ");
         refill();
         setAdapter();
+        Helper.setup_progress(cash, progressBar, progress, getContext());
     }
 
     private void setAdapter() {
