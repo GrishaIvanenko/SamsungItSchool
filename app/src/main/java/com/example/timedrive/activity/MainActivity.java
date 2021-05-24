@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         navView.setItemIconSize(100);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_today, R.id.navigation_week,
-                R.id.navigation_all, R.id.navigation_profile)
+                R.id.navigation_all)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);

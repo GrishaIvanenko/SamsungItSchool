@@ -135,7 +135,7 @@ public class Helper {
         if (40 <= pers && pers < 60)
             return getByName(context, "resultfrom40to60");
         if (60 <= pers && pers < 80)
-            return getByName(context, "resultfro60to80");
+            return getByName(context, "resultfrom60to80");
         if (80 <= pers && pers < 100)
             return getByName(context, "resultfrom80to100");
         if (pers == 100)

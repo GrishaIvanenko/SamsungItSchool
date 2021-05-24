@@ -23,9 +23,4 @@
         android:label="@string/title_all"
         tools:layout="@layout/fragment_all" />
 
-    <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.example.timedrive.profile.ProfileFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
 </navigation>

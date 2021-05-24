@@ -16,9 +16,4 @@
         android:icon="@drawable/ic_all_icon_selector"
         android:title="" />
 
-    <item
-        android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_profile_icon_selector"
-        android:title="" />
-
 </menu>

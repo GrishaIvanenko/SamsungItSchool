@@ -21,6 +21,7 @@ import com.example.timedrive.activity.AddActivity;
 import com.example.timedrive.activity.SettingsActivity;
 import com.example.timedrive.all.recyclerview.recyclerAdapter;
 import com.example.timedrive.database.asks.AsyncAllWithDate;
+import com.example.timedrive.database.asks.AsyncUpdater;
 import com.example.timedrive.database.code.Task;
 import com.example.timedrive.database.code.TaskBase;
 import com.example.timedrive.extra.Helper;
@@ -45,6 +46,14 @@ public class AllFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_all, container, false);
+
+        AsyncUpdater kukushka = new AsyncUpdater(getContext());
+        kukushka.execute();
+        try {
+            kukushka.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
 
         progressBar = root.findViewById(R.id.progressBarAll);
         progress = root.findViewById(R.id.textViewAllProgress);

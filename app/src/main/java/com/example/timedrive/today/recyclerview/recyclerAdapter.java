@@ -40,6 +40,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private final TextView textViewTitle;
         private final TextView textViewDescription;
+        private final TextView title;
         private final CheckBox checkBoxer;
         private final AppCompatImageButton icon;
         private final AppCompatImageButton edit;
@@ -50,6 +51,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
             checkBoxer = view.findViewById(R.id.checkBox);
             icon = view.findViewById(R.id.itemIcon);
             edit = view.findViewById(R.id.edit_button);
+            title = view.findViewById(R.id.textView2);
         }
     }
 
@@ -63,13 +65,18 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        String title = taskArrayList.get(position).getTitle();
+
         Integer integerTime = taskArrayList.get(position).getTime();
         String stringTime = Helper.parce_time(integerTime);
-        String scoreTitle = stringTime + ", " + title;
-        holder.textViewTitle.setText(scoreTitle);
+        String score = "Сегодня, " + stringTime;
+        holder.title.setText(score);
+
+        String title = taskArrayList.get(position).getTitle();
+        holder.textViewTitle.setText(title);
+
         String description = taskArrayList.get(position).getDescription();
         holder.textViewDescription.setText(description);
+
         holder.checkBoxer.setOnClickListener(v-> {
             if (holder.checkBoxer.isChecked()) {
                 taskArrayList.get(position).setDone(true);

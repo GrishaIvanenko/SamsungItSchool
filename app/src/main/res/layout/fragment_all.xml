@@ -71,6 +71,7 @@
         android:id="@+id/recyclerViewInAll"
         android:layout_width="match_parent"
         android:layout_height="600dp"
+        tools:listitem="@layout/task_item_decor"
         app:layout_constraintBottom_toTopOf="@+id/plus_post_all"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

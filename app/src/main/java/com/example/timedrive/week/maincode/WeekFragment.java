@@ -20,10 +20,11 @@ import com.example.timedrive.R;
 import com.example.timedrive.activity.AddActivity;
 import com.example.timedrive.activity.SettingsActivity;
 import com.example.timedrive.database.asks.AsyncAllWithDate;
+import com.example.timedrive.database.asks.AsyncUpdater;
 import com.example.timedrive.database.code.Task;
 import com.example.timedrive.database.code.TaskBase;
-import com.example.timedrive.extra.TaskTimeComparator;
 import com.example.timedrive.extra.Helper;
+import com.example.timedrive.extra.TaskTimeComparator;
 import com.example.timedrive.week.recyclerview.recyclerAdapter;
 
 import java.util.ArrayList;
@@ -45,6 +46,14 @@ public class WeekFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_week, container, false);
+
+        AsyncUpdater kukushka = new AsyncUpdater(getContext());
+        kukushka.execute();
+        try {
+            kukushka.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
 
         progressBar = root.findViewById(R.id.progressBarWeek);
         progress = root.findViewById(R.id.textViewWeekProgress);
