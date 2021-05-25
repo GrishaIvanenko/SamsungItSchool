@@ -57,7 +57,6 @@ public class Helper {
         return ans;
     }
 
-
     public static String parceDate(Long data) {
         Integer year = (int)(data / 1000);
         Integer day = (int)(data % 1000);
